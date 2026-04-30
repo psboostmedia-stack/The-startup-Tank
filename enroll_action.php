@@ -10,20 +10,24 @@ try {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $first_name = $_POST['first_name'];
-    $last_name = $_POST['last_name'];
+    $full_name = $_POST['full_name'];
     $email = $_POST['email'];
     $password_plain = $_POST['password'];
     $confirm_password = $_POST['confirm_password'] ?? '';
     $phone = $_POST['phone'];
     
-    // Values from the updated registration form
-    $class_year = $_POST['class_year'] ?? 'Not Specified';
-    $stream = $_POST['stream'] ?? 'Not Specified';
-    $institution = $_POST['institution'] ?? 'Not Specified';
-    $city = $_POST['city'] ?? 'Not Specified';
-    $idea = $_POST['idea'] ?? '';
-    $student_type = $_POST['student_type'] ?? 'college';
+    // Split Full Name
+    $parts = explode(' ', trim($full_name));
+    $first_name = $parts[0];
+    $last_name = (count($parts) > 1) ? implode(' ', array_slice($parts, 1)) : '';
+    
+    // Default values for simplified registration
+    $class_year = 'Not Specified';
+    $stream = 'Not Specified';
+    $institution = 'Not Specified';
+    $city = 'Not Specified';
+    $idea = '';
+    $student_type = 'student';
 
     // Password confirmation check
     if ($password_plain !== $confirm_password) {

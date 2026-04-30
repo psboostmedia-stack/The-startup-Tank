@@ -182,21 +182,13 @@ $links = $stmt_links->fetchAll();
                     <div style="font-size:13px; color:rgba(255,255,255,0.6); display:flex; align-items:center; gap:6px;">
                         <i data-lucide="mail" style="width:14px; opacity:0.7;"></i> <?php echo $student['email']; ?>
                     </div>
-                    <div style="font-size:13px; color:rgba(255,255,255,0.6); display:flex; align-items:center; gap:6px;">
-                        <i data-lucide="graduation-cap" style="width:14px; opacity:0.7;"></i> <?php echo $student['institution']; ?> (<?php echo $student['class_year']; ?>)
-                    </div>
-                    <?php if (!empty($student['stream'])): ?>
-                    <div style="font-size:13px; color:var(--blue-light); display:flex; align-items:center; gap:6px; font-weight:600;">
-                        <i data-lucide="compass" style="width:14px; color:var(--gold);"></i> Stream: <?php echo strtoupper($student['stream']); ?>
-                    </div>
-                    <?php endif; ?>
                 </div>
             </div>
         </div>
         <div style="text-align:right;">
              <div style="font-size:11px; color:var(--gold); font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:5px;">Innovator Status</div>
              <div style="background:rgba(21,101,192,0.2); padding:5px 15px; border-radius:20px; border:1px solid var(--blue); color:var(--blue-light); font-size:11px; font-weight:700;">
-                <?php echo strtoupper($student['student_type']); ?> MEMBER
+                MEMBER
              </div>
         </div>
     </div>
@@ -256,22 +248,6 @@ $links = $stmt_links->fetchAll();
                 </div>
                 <?php endforeach; ?>
             </div>
-
-            <!-- Idea Card -->
-            <div class="card" style="margin-top:40px; border-color:rgba(255,193,7,0.2);">
-                <div style="display:flex; align-items:center; gap:15px; margin-bottom:20px;">
-                    <i data-lucide="lightbulb" style="color:var(--gold);"></i>
-                    <h3 style="font-family:'Barlow Condensed'; font-size:22px;">YOUR STARTUP BLUEPRINT</h3>
-                </div>
-                <div style="background:rgba(255,255,255,0.03); padding:20px; border-radius:8px; border:1px solid rgba(255,255,255,0.05);">
-                    <p style="font-size:15px; color:rgba(255,255,255,0.8); line-height:1.7; font-style:italic;">
-                        "<?php echo $student['idea'] ? nl2br($student['idea']) : 'Describe your vision to get personalized feedback from mentors.'; ?>"
-                    </p>
-                </div>
-                <div style="margin-top:15px; display:flex; justify-content:flex-end;">
-                    <button onclick="openIdeaModal()" class="btn-secondary" style="padding:4px 12px; font-size:11px; border-color:var(--blue); color:var(--blue-light);">Refine Idea</button>
-                </div>
-            </div>
         </div>
 
         <!-- Sidebar Widgets -->
@@ -309,33 +285,8 @@ $links = $stmt_links->fetchAll();
     </div>
 </div>
 
-<!-- Idea Modal -->
-<div class="modal-overlay" id="ideaModal">
-    <div class="modal">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px;">
-            <h2 style="font-family:'Bebas Neue'; font-size:32px; color:var(--gold);">REFINE YOUR IDEA</h2>
-            <button onclick="closeIdeaModal()" style="background:transparent; border:none; color:white; font-size:24px; cursor:pointer;">&times;</button>
-        </div>
-        <form action="update_idea.php" method="POST">
-            <div class="form-group">
-                <label>Startup Blueprint</label>
-                <textarea name="idea" rows="6" style="background:rgba(0,0,0,0.2); border-color:rgba(255,255,255,0.1); width:100%; color:white; border-radius:8px; padding:15px; font-family:inherit; outline:none;" required minlength="20"><?php echo $student['idea']; ?></textarea>
-            </div>
-            <button type="submit" class="btn-primary" style="width:100%;">Save Changes</button>
-        </form>
-    </div>
-</div>
-
 <script>
     lucide.createIcons();
-    
-    function openIdeaModal() {
-        document.getElementById('ideaModal').classList.add('active');
-    }
-    
-    function closeIdeaModal() {
-        document.getElementById('ideaModal').classList.remove('active');
-    }
 </script>
 
 <style>

@@ -509,16 +509,16 @@ try {
                 <table>
                     <thead>
                         <tr>
-                            <th>Name & Contact</th>
-                            <th>Email</th>
-                            <th>Institution & City</th>
-                            <th>Stream</th>
+                            <th>Student Name</th>
+                            <th>Contact Number</th>
+                            <th>Email Address</th>
+                            <th>Registration Date</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php if (empty($approved_students)): ?>
-                            <tr><td colspan="6" style="text-align:center; padding:50px; opacity:0.5;">
+                            <tr><td colspan="5" style="text-align:center; padding:50px; opacity:0.5;">
                                 <i data-lucide="users" style="width:40px; height:40px; margin-bottom:10px; opacity:0.3;"></i>
                                 <div style="font-size:16px; font-weight:600;">No Registered Accounts Yet</div>
                                 <div style="font-size:12px;">Students who register for a portal account will appear here.</div>
@@ -528,25 +528,17 @@ try {
                                 <tr>
                                     <td>
                                         <div style="display:flex; align-items:center; gap:12px;">
-                                            <div style="width:36px; height:36px; background:rgba(0,102,255,0.1); border-radius:10px; display:flex; align-items:center; justify-content:center; font-weight:900; font-family:'Bebas Neue'; font-size:18px; color:var(--blue-light); border:1px solid var(--gold);">
+                                            <div style="width:36px; height:36px; background:rgba(255,215,0,0.1); border-radius:10px; display:flex; align-items:center; justify-content:center; font-weight:900; font-family:'Bebas Neue'; font-size:18px; color:var(--gold); border:1px solid rgba(255,215,0,0.3);">
                                                 <?php echo strtoupper($s['first_name'][0] ?? 'S'); ?>
                                             </div>
-                                            <div>
-                                                <div style="font-weight:700; color:white;"><?php echo ($s['first_name'] ?? '') . ' ' . ($s['last_name'] ?? ''); ?></div>
-                                                <div style="font-size:11px; color:#4CAF50; font-weight:600;"><?php echo $s['phone'] ?? 'No Phone'; ?></div>
-                                            </div>
+                                            <div style="font-weight:700; color:white;"><?php echo ($s['first_name'] ?? '') . ' ' . ($s['last_name'] ?? ''); ?></div>
                                         </div>
                                     </td>
+                                    <td style="font-size:13px; font-weight:600; color:#4CAF50;"><?php echo $s['phone'] ?? 'N/A'; ?></td>
                                     <td style="font-size:13px;"><?php echo $s['email'] ?? 'N/A'; ?></td>
-                                    <td style="font-size:12px;">
-                                        <div style="font-weight:600;"><?php echo $s['institution'] ?? 'N/A'; ?></div>
-                                        <div style="color:rgba(255,255,255,0.5); font-size:11px;"><?php echo $s['city'] ?? 'N/A'; ?></div>
-                                        <div style="color:var(--gold); font-size:10px; margin-top:4px;"><?php echo strtoupper($s['student_type'] ?? 'STUDENT'); ?> (<?php echo $s['class_year'] ?? 'N/A'; ?>)</div>
-                                    </td>
-                                    <td style="font-size:12px; color:rgba(255,255,255,0.7);"><?php echo $s['stream'] ?: 'N/A'; ?></td>
+                                    <td style="font-size:12px; color:rgba(255,255,255,0.4);"><?php echo date('d M Y', strtotime($s['created_at'])); ?></td>
                                     <td>
-                                        <button onclick="alert('Idea: <?php echo addslashes($s['idea'] ?? 'No idea provided'); ?>')" style="padding:4px 8px; font-size:10px; background:transparent; border:1px solid var(--blue); color:var(--blue-light); cursor:pointer;">View Idea</button>
-                                        <button onclick='openEditModal(<?php echo json_encode($s); ?>)' style="padding:4px 8px; font-size:10px; background:var(--gold); border:none; color:var(--navy); cursor:pointer; font-weight:700; border-radius:3px; margin-left:5px;">Edit</button>
+                                        <button onclick='openEditModal(<?php echo json_encode($s); ?>)' style="padding:6px 12px; font-size:11px; background:var(--gold); border:none; color:var(--navy); cursor:pointer; font-weight:700; border-radius:4px;">Edit Profile</button>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -786,48 +778,15 @@ try {
                     <input type="text" name="last_name" id="edit_last_name" required minlength="2">
                 </div>
             </div>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:15px;">
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" name="email" id="edit_email" required>
-                </div>
-                <div class="form-group">
-                    <label>Phone</label>
-                    <input type="text" name="phone" id="edit_phone">
-                </div>
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" name="email" id="edit_email" required>
             </div>
             <div class="form-group">
-                <label>Institution</label>
-                <input type="text" name="institution" id="edit_institution" required>
+                <label>Contact Number Number</label>
+                <input type="text" name="phone" id="edit_phone">
             </div>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:15px;">
-                <div class="form-group">
-                    <label>Type</label>
-                    <select name="student_type" id="edit_student_type">
-                        <option value="school">School</option>
-                        <option value="college">College</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Class/Year</label>
-                    <input type="text" name="class_year" id="edit_class_year" required>
-                </div>
-            </div>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:15px;">
-                <div class="form-group">
-                    <label>Stream</label>
-                    <input type="text" name="stream" id="edit_stream">
-                </div>
-                <div class="form-group">
-                    <label>City</label>
-                    <input type="text" name="city" id="edit_city">
-                </div>
-            </div>
-            <div class="form-group">
-                <label>Idea Description</label>
-                <textarea name="idea" id="edit_idea" rows="4"></textarea>
-            </div>
-            <button type="submit" class="btn-primary" style="width:100%;">Update Student Profile</button>
+            <button type="submit" class="btn-primary" style="width:100%; border:none; background:var(--gold); color:var(--navy); font-weight:800;">Update Student Profile</button>
         </form>
     </div>
 </div>
@@ -872,16 +831,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function openEditModal(student) {
     document.getElementById('edit_id').value = student.id;
-    document.getElementById('edit_first_name').value = student.first_name;
-    document.getElementById('edit_last_name').value = student.last_name;
-    document.getElementById('edit_email').value = student.email;
+    document.getElementById('edit_first_name').value = student.first_name || '';
+    document.getElementById('edit_last_name').value = student.last_name || '';
+    document.getElementById('edit_email').value = student.email || '';
     document.getElementById('edit_phone').value = student.phone || '';
-    document.getElementById('edit_institution').value = student.institution;
-    document.getElementById('edit_student_type').value = student.student_type;
-    document.getElementById('edit_class_year').value = student.class_year;
-    document.getElementById('edit_stream').value = student.stream || '';
-    document.getElementById('edit_city').value = student.city || '';
-    document.getElementById('edit_idea').value = student.idea;
     
     // Update modal avatar
     const avatar = document.getElementById('edit_avatar');

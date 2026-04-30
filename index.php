@@ -416,59 +416,22 @@ include 'db.php';
         <p style="margin-bottom: 25px; color: rgba(255,255,255,0.7); font-size: 14px;">Register to access courses, resources, and your innovation dashboard.</p>
         
         <form action="enroll_action.php" method="POST">
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:15px;">
-                <div class="form-group">
-                    <label>First Name *</label>
-                    <input type="text" name="first_name" required minlength="2" placeholder="First Name">
-                </div>
-                <div class="form-group">
-                    <label>Last Name *</label>
-                    <input type="text" name="last_name" required minlength="1" placeholder="Last Name">
-                </div>
+            <div class="form-group">
+                <label>Full Name *</label>
+                <input type="text" name="full_name" required minlength="3" placeholder="Enter your full name">
             </div>
             <div class="form-group">
                 <label>Email Address *</label>
-                <input type="email" name="email" required placeholder="For login">
+                <input type="email" name="email" required placeholder="admin">
             </div>
             <div class="form-group">
                 <label>Contact Number *</label>
-                <input type="tel" name="phone" required pattern="[0-9]{10,12}" title="Please enter a valid phone number (10-12 digits)" placeholder="Your phone number">
-            </div>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:15px;">
-                <div class="form-group">
-                    <label>Institution *</label>
-                    <input type="text" name="institution" required placeholder="School/College Name">
-                </div>
-                <div class="form-group">
-                    <label>Type *</label>
-                    <select name="student_type" required>
-                        <option value="school">School Student</option>
-                        <option value="college">College Student</option>
-                    </select>
-                </div>
-            </div>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:15px;">
-                <div class="form-group">
-                    <label>Class/Year *</label>
-                    <input type="text" name="class_year" required placeholder="e.g. 10th or 2nd Year">
-                </div>
-                <div class="form-group">
-                    <label>Stream</label>
-                    <input type="text" name="stream" placeholder="e.g. Science, Commerce">
-                </div>
-            </div>
-            <div class="form-group">
-                <label>City</label>
-                <input type="text" name="city" placeholder="Your City">
-            </div>
-            <div class="form-group">
-                <label>Startup Idea (Optional)</label>
-                <textarea name="idea" rows="3" placeholder="Briefly describe your idea..."></textarea>
+                <input type="tel" name="phone" required placeholder="Your phone number">
             </div>
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:15px;">
                 <div class="form-group">
                     <label>Create Password *</label>
-                    <input type="password" name="password" id="reg_pass" required minlength="6">
+                    <input type="password" name="password" id="reg_pass" required minlength="6" placeholder=".........">
                 </div>
                 <div class="form-group">
                     <label>Confirm Password *</label>
