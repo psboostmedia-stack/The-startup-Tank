@@ -169,7 +169,19 @@ app.get("/admin_login.php", (req, res) => {
 });
 
 app.get("/admin_dashboard.php", (req, res) => {
-    res.send(renderPHP(path.join(process.cwd(), "admin_dashboard.php"), 'admin'));
+    res.send(renderPHP(path.join(process.cwd(), "admin_dashboard.php"), "admin"));
+});
+
+app.get("/admin_register.php", (req, res) => {
+    res.send(renderPHP(path.join(process.cwd(), "admin_register.php")));
+});
+
+app.get("/admin_forgot_password.php", (req, res) => {
+    res.send(renderPHP(path.join(process.cwd(), "admin_forgot_password.php")));
+});
+
+app.get("/admin_reset_password.php", (req, res) => {
+    res.send(renderPHP(path.join(process.cwd(), "admin_reset_password.php")));
 });
 
 app.get("/courses.php", (req, res) => {
@@ -258,6 +270,18 @@ app.post("/register_action.php", (req, res) => {
 
 app.post("/admin_login.php", (req, res) => {
     res.redirect("/admin_dashboard.php");
+});
+
+app.post("/admin_register.php", (req, res) => {
+    res.redirect("/admin_login.php?registered=1");
+});
+
+app.post("/admin_forgot_password.php", (req, res) => {
+    res.redirect("/admin_forgot_password.php?sent=1");
+});
+
+app.post("/admin_reset_password.php", (req, res) => {
+    res.redirect("/admin_login.php?reset=1");
 });
 
 app.post("/admin_dashboard.php", (req, res) => {

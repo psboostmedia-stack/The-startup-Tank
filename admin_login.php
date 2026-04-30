@@ -16,6 +16,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->execute([$username]);
     $admin = $stmt->fetch();
 
+    // Migration: Ensure admin table has email column
+    try {
+        $pdo->query("SELECT email FROM admins LIMIT 1");
+    } catch (Exception $e) {
+        $pdo->exec("ALTER TABLE admins ADD COLUMN email VARCHAR(100) AFTER username");
+        $pdo->exec("ALTER TABLE admins ADD COLUMN reset_token VARCHAR(255) DEFAULT NULL");
+        $pdo->exec("ALTER TABLE admins ADD COLUMN reset_expires DATETIME DEFAULT NULL");
+        
+        // Update default admin email if it exists
+        $pdo->exec("UPDATE admins SET email = 'admin@thestartuptank.com' WHERE username = 'admin' AND (email IS NULL OR email = '')");
+    }
+
     if ($admin && password_verify($password, $admin['password'])) {
         $_SESSION['admin_id'] = $admin['id'];
         header("Location: admin_dashboard.php");
@@ -59,6 +71,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 <button type="submit" class="btn-primary" style="width:100%; background:var(--blue); border-color:var(--blue); color:white;">Login as Admin</button>
             </form>
+            
+            <div style="display:flex; justify-content:space-between; margin-top:15px; font-size:12px;">
+                <a href="admin_forgot_password.php" style="color:var(--blue-light);">Forgot Password?</a>
+                <a href="admin_register.php" style="color:rgba(255,255,255,0.6);">Register Admin</a>
+            </div>
+
             <div style="margin-top: 20px; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 8px; border: 1px dashed rgba(25,118,210,0.3); font-size: 13px; color: rgba(255,255,255,0.5);">
                 <strong>Default Credentials:</strong><br>
                 Username: <code style="color:var(--blue-light);">admin</code><br>
