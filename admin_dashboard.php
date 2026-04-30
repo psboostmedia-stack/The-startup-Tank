@@ -127,7 +127,7 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - The Startup Tank</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/lucide/dist/umd/lucide.js"></script>
     <style>
@@ -348,8 +348,12 @@ try {
 <body>
 
 <div class="mobile-admin-bar">
-    <div class="nav-logo">
-        <div class="nav-logo-circle" style="width:32px; height:32px; font-size:7px;">The<br>Tank</div>
+    <div class="nav-logo" style="margin-bottom: 40px; padding: 0 10px;">
+        <div class="nav-logo-circle" style="width:42px; height:42px; padding: 2px;">
+            <span class="the-text" style="font-size: 6px; margin-left: 6px;">The</span>
+            <span class="startup-text" style="font-size: 8px;">Startup</span>
+            <span class="tank-text" style="font-size: 11px;">Tank</span>
+        </div>
         <div style="display:flex; flex-direction:column;">
             <div class="nav-logo-text" style="font-size:12px; opacity:0.6; margin-bottom:-4px;">ADMIN</div>
             <div class="nav-logo-text" style="font-size:16px;"><span>DASHBOARD</span></div>
@@ -364,7 +368,11 @@ try {
     <div class="sidebar-brand">
          <div style="display:flex; justify-content:space-between; align-items:center;">
             <a href="index.php" class="nav-logo" style="text-decoration:none;">
-                <div class="nav-logo-circle">The<br>Tank</div>
+                <div class="nav-logo-circle" style="width:38px; height:38px; padding: 2px;">
+                    <span class="the-text" style="font-size: 5px; margin-left: 5px;">The</span>
+                    <span class="startup-text" style="font-size: 7px;">Startup</span>
+                    <span class="tank-text" style="font-size: 10px;">Tank</span>
+                </div>
                 <div class="nav-logo-text">Admin <span>Portal</span></div>
             </a>
             <button class="mobile-only" onclick="toggleSidebar()" style="background:none; border:none; color:white; cursor:pointer; display:none;">

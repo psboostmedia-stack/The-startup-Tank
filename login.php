@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Login - The Startup Tank</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
         .login-page { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: #060e1c; padding: 20px; }
@@ -48,7 +48,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <div class="login-page">
-        <div class="login-box">
+        <div class="login-box" style="position: relative;">
+            <a href="index.php" style="position: absolute; top: 20px; right: 20px; color: rgba(255,255,255,0.4); text-decoration: none; font-size: 24px; line-height: 1; transition: color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">&times;</a>
             <h2 style="font-family:'Bebas Neue'; font-size:36px; margin-bottom:10px;">STUDENT <span style="color:var(--gold);">LOGIN</span></h2>
             <p style="color:rgba(255,255,255,0.6); margin-bottom:30px;">Access your innovation feed and profile.</p>
             

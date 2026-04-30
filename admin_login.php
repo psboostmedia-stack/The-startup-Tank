@@ -52,7 +52,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <div class="login-page">
-        <div class="login-box">
+        <div class="login-box" style="position: relative;">
+            <a href="index.php" style="position: absolute; top: 20px; right: 20px; color: rgba(255,255,255,0.4); text-decoration: none; font-size: 24px; line-height: 1; transition: color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">&times;</a>
             <h2 style="font-family:'Bebas Neue'; font-size:36px; margin-bottom:10px;">ADMIN <span style="color:var(--blue-light);">PORTAL</span></h2>
             <p style="color:rgba(255,255,255,0.6); margin-bottom:30px;">Manage students and post daily links.</p>
             
