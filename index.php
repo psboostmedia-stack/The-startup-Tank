@@ -10,6 +10,7 @@ include 'db.php';
     <title>The Startup Tank – Ideas Today. Impact Tomorrow.</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600;700;900&family=Barlow+Condensed:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/lucide/dist/umd/lucide.js"></script>
     <style>
         /* Specific page adjustments if needed */
         .about { background: var(--off-white); color: var(--navy); padding: 100px 5%; }
@@ -38,7 +39,30 @@ include 'db.php';
         <li><a href="login.php" style="color: var(--gold);">Student Login</a></li>
         <li><a href="#" class="btn-primary" style="padding: 10px 20px; font-size: 13px;" onclick="openModal('registerModal')">Register Now</a></li>
     </ul>
+    <button class="menu-toggle" onclick="toggleMobileMenu()">
+        <i data-lucide="menu"></i>
+    </button>
 </nav>
+
+<div class="mobile-menu" id="mobileMenu">
+    <div style="display:flex; justify-content:space-between; align-items:center; padding:24px 5%; border-bottom:1px solid rgba(255,255,255,0.05);">
+        <div class="nav-logo">
+            <div class="nav-logo-circle" style="width:36px; height:36px; font-size:8px;">The<br>Startup<br>Tank</div>
+            <div class="nav-logo-text" style="font-size:16px;">The <span>Startup</span> Tank</div>
+        </div>
+        <button onclick="toggleMobileMenu()" style="background:none; border:none; color:white; cursor:pointer;">
+            <i data-lucide="x"></i>
+        </button>
+    </div>
+    <ul class="mobile-nav-links">
+        <li><a href="#about" onclick="toggleMobileMenu()">About</a></li>
+        <li><a href="#why" onclick="toggleMobileMenu()">Why Join</a></li>
+        <li><a href="#how" onclick="toggleMobileMenu()">How It Works</a></li>
+        <li><a href="#programs" onclick="toggleMobileMenu()">Programs</a></li>
+        <li><a href="login.php" style="color: var(--gold);">Student Login</a></li>
+        <li style="margin-top:20px;"><a href="#" class="btn-primary" style="width:100%; justify-content:center;" onclick="toggleMobileMenu(); openModal('registerModal')">Register Now</a></li>
+    </ul>
+</div>
 
 <?php if (isset($_SESSION['enrollment_success'])): ?>
 <div class="status-banner" id="enrollment-banner" style="background:#4caf50; color:white; padding:15px; text-align:center; font-family:'Barlow'; font-weight:600; position:sticky; top:80px; z-index:1000; display:flex; align-items:center; justify-content:center; gap:10px;">
@@ -478,6 +502,16 @@ include 'db.php';
             error.style.display = 'none';
         }
     }
+    
+    function toggleMobileMenu() {
+        document.getElementById('mobileMenu').classList.toggle('active');
+        document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('active') ? 'hidden' : 'auto';
+    }
+    
+    // Initialize Lucide icons
+    document.addEventListener('DOMContentLoaded', () => {
+        lucide.createIcons();
+    });
 </script>
 
 </body>

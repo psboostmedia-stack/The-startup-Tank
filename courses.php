@@ -26,7 +26,7 @@ if (!$student || $student['status'] !== 'approved') {
     <title>My Courses - The Startup Tank</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600;700&family=Barlow+Condensed:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lucide/dist/umd/lucide.js"></script>
     <style>
         :root { --sidebar-width: 260px; }
         body { background: #040911; display: flex; min-height: 100vh; }
@@ -64,17 +64,64 @@ if (!$student || $student['status'] !== 'approved') {
         
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; }
 
-        @media (max-width: 900px) { .sidebar { display: none; } .main-content { margin-left: 0; padding: 20px; } }
+        @media (max-width: 900px) {
+            .sidebar { 
+                width: var(--sidebar-width); 
+                left: -100%; 
+                transition: left 0.3s ease;
+            }
+            .sidebar.active {
+                left: 0;
+            }
+            .main-content { 
+                margin-left: 0; 
+                padding: 20px;
+                padding-top: 80px;
+            }
+            .mobile-header-bar {
+                display: flex !important;
+            }
+        }
+
+        .mobile-header-bar {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: #060e1c;
+            padding: 0 20px;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 99;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
     </style>
 </head>
 <body>
 
-<div class="sidebar">
+<div class="mobile-header-bar">
+    <div class="nav-logo">
+        <div class="nav-logo-circle" style="width:32px; height:32px; font-size:7px;">The<br>Tank</div>
+        <div class="nav-logo-text" style="font-size:16px;">Student <span>Portal</span></div>
+    </div>
+    <button onclick="toggleSidebar()" style="background:none; border:none; color:white; cursor:pointer;">
+        <i data-lucide="menu"></i>
+    </button>
+</div>
+
+<div class="sidebar" id="coursesSidebar">
     <div class="sidebar-brand">
-        <a href="index.php" class="nav-logo">
-            <div class="nav-logo-circle">The<br>Tank</div>
-            <div class="nav-logo-text">Student <span>Portal</span></div>
-        </a>
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+            <a href="index.php" class="nav-logo">
+                <div class="nav-logo-circle">The<br>Tank</div>
+                <div class="nav-logo-text">Student <span>Portal</span></div>
+            </a>
+            <button onclick="toggleSidebar()" style="background:none; border:none; color:white; cursor:pointer; display:none;" class="mobile-only">
+                <i data-lucide="x"></i>
+            </button>
+        </div>
     </div>
     
     <div class="sidebar-menu">
@@ -126,6 +173,13 @@ if (!$student || $student['status'] !== 'approved') {
     </div>
 </div>
 
-<script>lucide.createIcons();</script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        lucide.createIcons();
+    });
+    function toggleSidebar() {
+        document.getElementById('coursesSidebar').classList.toggle('active');
+    }
+</script>
 </body>
 </html>
