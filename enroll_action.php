@@ -10,18 +10,20 @@ try {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $full_name = $_POST['full_name'];
+    $first_name = $_POST['first_name'];
+    $last_name = $_POST['last_name'];
     $email = $_POST['email'];
     $password_plain = $_POST['password'];
     $confirm_password = $_POST['confirm_password'] ?? '';
     $phone = $_POST['phone'];
     
-    // Default values for simplified registration
+    // Values from the updated registration form
     $class_year = $_POST['class_year'] ?? 'Not Specified';
     $stream = $_POST['stream'] ?? 'Not Specified';
     $institution = $_POST['institution'] ?? 'Not Specified';
     $city = $_POST['city'] ?? 'Not Specified';
     $idea = $_POST['idea'] ?? '';
+    $student_type = $_POST['student_type'] ?? 'college';
 
     // Password confirmation check
     if ($password_plain !== $confirm_password) {
@@ -30,18 +32,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $password = password_hash($password_plain, PASSWORD_DEFAULT);
     
-    // Determine student_type based on class_year
-    $student_type = "college";
-    if (in_array($class_year, ["9th", "10th", "11th", "12th"])) {
-        $student_type = "school";
-    }
-
-    // Split Full Name
-    $parts = explode(' ', trim($full_name));
-    $first_name = $parts[0];
-    $last_name = (count($parts) > 1) ? implode(' ', array_slice($parts, 1)) : '';
-
     try {
+        // Migration: Ensure city column exists
+        try {
+            $pdo->query("SELECT city FROM students LIMIT 1");
+        } catch (Exception $m) {
+            $pdo->exec("ALTER TABLE students ADD COLUMN city VARCHAR(100) DEFAULT NULL AFTER class_year");
+        }
         // Ensure new columns exist for future use
         try {
             $pdo->query("SELECT email_verified FROM students LIMIT 1");

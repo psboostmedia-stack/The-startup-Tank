@@ -425,7 +425,9 @@ try {
                                             <button onclick="alert('Full Idea: <?php echo addslashes($e['idea']); ?>')" style="background:none; border:none; color:#4CAF50; padding:0; cursor:pointer; font-size:11px; font-weight:600;">Show More</button>
                                         <?php endif; ?>
                                     </td>
-                                    <td style="font-size:11px; color:rgba(255,255,255,0.4);"><?php echo date('d M Y, H:i', strtotime($e['created_at'])); ?></td>
+                                    <td style="font-size:11px; color:rgba(255,255,255,0.4);">
+                                        <?php echo date('d M Y, H:i', strtotime($e['created_at'])); ?>
+                                    </td>
                                 </tr>
                             <?php endforeach; ?>
                         <?php endif; ?>
@@ -507,16 +509,16 @@ try {
                 <table>
                     <thead>
                         <tr>
-                            <th>Name</th>
+                            <th>Name & Contact</th>
                             <th>Email</th>
-                            <th>Institution</th>
+                            <th>Institution & City</th>
                             <th>Stream</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php if (empty($approved_students)): ?>
-                            <tr><td colspan="5" style="text-align:center; padding:50px; opacity:0.5;">
+                            <tr><td colspan="6" style="text-align:center; padding:50px; opacity:0.5;">
                                 <i data-lucide="users" style="width:40px; height:40px; margin-bottom:10px; opacity:0.3;"></i>
                                 <div style="font-size:16px; font-weight:600;">No Registered Accounts Yet</div>
                                 <div style="font-size:12px;">Students who register for a portal account will appear here.</div>
@@ -531,14 +533,15 @@ try {
                                             </div>
                                             <div>
                                                 <div style="font-weight:700; color:white;"><?php echo ($s['first_name'] ?? '') . ' ' . ($s['last_name'] ?? ''); ?></div>
-                                                <div style="font-size:10px; color:rgba(255,255,255,0.4);"><?php echo date('d M Y', strtotime($s['created_at'])); ?></div>
+                                                <div style="font-size:11px; color:#4CAF50; font-weight:600;"><?php echo $s['phone'] ?? 'No Phone'; ?></div>
                                             </div>
                                         </div>
                                     </td>
                                     <td style="font-size:13px;"><?php echo $s['email'] ?? 'N/A'; ?></td>
                                     <td style="font-size:12px;">
                                         <div style="font-weight:600;"><?php echo $s['institution'] ?? 'N/A'; ?></div>
-                                        <div style="color:var(--gold); font-size:11px;"><?php echo strtoupper($s['student_type'] ?? 'STUDENT'); ?> (<?php echo $s['class_year'] ?? 'N/A'; ?>)</div>
+                                        <div style="color:rgba(255,255,255,0.5); font-size:11px;"><?php echo $s['city'] ?? 'N/A'; ?></div>
+                                        <div style="color:var(--gold); font-size:10px; margin-top:4px;"><?php echo strtoupper($s['student_type'] ?? 'STUDENT'); ?> (<?php echo $s['class_year'] ?? 'N/A'; ?>)</div>
                                     </td>
                                     <td style="font-size:12px; color:rgba(255,255,255,0.7);"><?php echo $s['stream'] ?: 'N/A'; ?></td>
                                     <td>
@@ -783,9 +786,15 @@ try {
                     <input type="text" name="last_name" id="edit_last_name" required minlength="2">
                 </div>
             </div>
-            <div class="form-group">
-                <label>Email</label>
-                <input type="email" name="email" id="edit_email" required>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:15px;">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" id="edit_email" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input type="text" name="phone" id="edit_phone">
+                </div>
             </div>
             <div class="form-group">
                 <label>Institution</label>
@@ -804,6 +813,16 @@ try {
                     <input type="text" name="class_year" id="edit_class_year" required>
                 </div>
             </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:15px;">
+                <div class="form-group">
+                    <label>Stream</label>
+                    <input type="text" name="stream" id="edit_stream">
+                </div>
+                <div class="form-group">
+                    <label>City</label>
+                    <input type="text" name="city" id="edit_city">
+                </div>
+            </div>
             <div class="form-group">
                 <label>Idea Description</label>
                 <textarea name="idea" id="edit_idea" rows="4"></textarea>
@@ -812,6 +831,8 @@ try {
         </form>
     </div>
 </div>
+
+
 
 <script>
 function switchTab(evt, tabId) {
@@ -854,18 +875,23 @@ function openEditModal(student) {
     document.getElementById('edit_first_name').value = student.first_name;
     document.getElementById('edit_last_name').value = student.last_name;
     document.getElementById('edit_email').value = student.email;
+    document.getElementById('edit_phone').value = student.phone || '';
     document.getElementById('edit_institution').value = student.institution;
     document.getElementById('edit_student_type').value = student.student_type;
     document.getElementById('edit_class_year').value = student.class_year;
+    document.getElementById('edit_stream').value = student.stream || '';
+    document.getElementById('edit_city').value = student.city || '';
     document.getElementById('edit_idea').value = student.idea;
     
     // Update modal avatar
     const avatar = document.getElementById('edit_avatar');
-    avatar.textContent = student.first_name.charAt(0).toUpperCase();
+    avatar.textContent = student.first_name ? student.first_name.charAt(0).toUpperCase() : 'S';
     document.getElementById('edit_subtitle').textContent = `Account: ${student.email}`;
     
     document.getElementById('editModal').classList.add('active');
 }
+
+
 
 function closeEditModal() {
     document.getElementById('editModal').classList.remove('active');
