@@ -319,7 +319,7 @@ $links = $stmt_links->fetchAll();
         <form action="update_idea.php" method="POST">
             <div class="form-group">
                 <label>Startup Blueprint</label>
-                <textarea name="idea" rows="6" style="background:rgba(0,0,0,0.2); border-color:rgba(255,255,255,0.1); width:100%; color:white; border-radius:8px; padding:15px; font-family:inherit; outline:none;" required><?php echo $student['idea']; ?></textarea>
+                <textarea name="idea" rows="6" style="background:rgba(0,0,0,0.2); border-color:rgba(255,255,255,0.1); width:100%; color:white; border-radius:8px; padding:15px; font-family:inherit; outline:none;" required minlength="20"><?php echo $student['idea']; ?></textarea>
             </div>
             <button type="submit" class="btn-primary" style="width:100%;">Save Changes</button>
         </form>

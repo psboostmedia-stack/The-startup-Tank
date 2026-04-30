@@ -51,11 +51,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <form action="" method="POST">
                 <div class="form-group">
                     <label>Username</label>
-                    <input type="text" name="username" required>
+                    <input type="text" name="username" required autocomplete="username">
                 </div>
                 <div class="form-group">
                     <label>Password</label>
-                    <input type="password" name="password" required>
+                    <input type="password" name="password" required autocomplete="current-password">
                 </div>
                 <button type="submit" class="btn-primary" style="width:100%; background:var(--blue); border-color:var(--blue); color:white;">Login as Admin</button>
             </form>

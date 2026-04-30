@@ -351,7 +351,7 @@ include 'db.php';
         <form action="enrollment_submit.php" method="POST">
             <div class="form-group">
                 <label>Full Name *</label>
-                <input type="text" name="full_name" required placeholder="Enter your full name">
+                <input type="text" name="full_name" required minlength="3" placeholder="Enter your full name">
             </div>
 
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:15px;">
@@ -398,7 +398,7 @@ include 'db.php';
 
             <div class="form-group">
                 <label>Your Startup Idea *</label>
-                <textarea name="idea" rows="4" required placeholder="Describe your vision for Startup Tank 2.0..."></textarea>
+                <textarea name="idea" rows="4" required minlength="20" placeholder="Describe your vision for Startup Tank 2.0 (min. 20 chars)..."></textarea>
             </div>
 
             <button type="submit" class="btn-primary" style="width:100%; border:none; background: var(--blue); color: white; font-weight: 800; padding: 16px;">Enroll for Tank 2.0</button>
@@ -418,7 +418,7 @@ include 'db.php';
         <form action="enroll_action.php" method="POST">
             <div class="form-group">
                 <label>Full Name *</label>
-                <input type="text" name="full_name" required placeholder="Enter your full name">
+                <input type="text" name="full_name" required minlength="3" placeholder="Enter your full name">
             </div>
             <div class="form-group">
                 <label>Email Address *</label>

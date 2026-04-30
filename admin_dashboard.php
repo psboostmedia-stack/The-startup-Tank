@@ -563,11 +563,11 @@ try {
                     <form action="" method="POST">
                         <div class="form-group">
                             <label>Course Title</label>
-                            <input type="text" name="title" placeholder="e.g. Finance Strategy" required>
+                            <input type="text" name="title" placeholder="e.g. Finance Strategy" required minlength="5">
                         </div>
                         <div class="form-group">
                             <label>Instructor</label>
-                            <input type="text" name="instructor" placeholder="e.g. John Doe">
+                            <input type="text" name="instructor" placeholder="e.g. John Doe" minlength="3">
                         </div>
                         <div class="form-group">
                             <label>Category</label>
@@ -588,7 +588,7 @@ try {
                         </div>
                         <div class="form-group">
                             <label>Description</label>
-                            <textarea name="description" rows="3" placeholder="Briefly describe the course contents..."></textarea>
+                            <textarea name="description" rows="3" placeholder="Briefly describe the course contents (min. 10 chars)..." minlength="10"></textarea>
                         </div>
                         <button type="submit" name="post_course" class="btn-primary" style="width:100%;">Create Course</button>
                     </form>
@@ -648,7 +648,7 @@ try {
                     <form action="" method="POST">
                         <div class="form-group">
                             <label>Resource Title</label>
-                            <input type="text" name="title" placeholder="e.g. Pitch Deck Template" required>
+                            <input type="text" name="title" placeholder="e.g. Pitch Deck Template" required minlength="5">
                         </div>
                         <div class="form-group">
                             <label>Category</label>
@@ -720,7 +720,7 @@ try {
                     <form action="" method="POST">
                         <div class="form-group">
                             <label>Session Topic</label>
-                            <input type="text" name="topic" placeholder="e.g. Masterclass: AI in Marketing" required>
+                            <input type="text" name="topic" placeholder="e.g. Masterclass: AI in Marketing" required minlength="5">
                         </div>
                         <div class="form-group">
                             <label>Zoom / Meeting Link</label>
@@ -776,11 +776,11 @@ try {
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:15px;">
                 <div class="form-group">
                     <label>First Name</label>
-                    <input type="text" name="first_name" id="edit_first_name" required>
+                    <input type="text" name="first_name" id="edit_first_name" required minlength="2">
                 </div>
                 <div class="form-group">
                     <label>Last Name</label>
-                    <input type="text" name="last_name" id="edit_last_name" required>
+                    <input type="text" name="last_name" id="edit_last_name" required minlength="2">
                 </div>
             </div>
             <div class="form-group">

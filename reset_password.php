@@ -75,14 +75,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $isValid) {
                 <form action="" method="POST">
                     <div class="form-group">
                         <label>New Password</label>
-                        <input type="password" name="password" required minlength="6">
+                        <input type="password" name="password" id="reset_pass" required minlength="6">
                     </div>
                     <div class="form-group">
                         <label>Confirm Password</label>
-                        <input type="password" name="confirm_password" required minlength="6">
+                        <input type="password" name="confirm_password" id="reset_confirm" required minlength="6" oninput="checkMatch()">
                     </div>
+                    <div id="reset_pass_error" style="color: #f44336; font-size: 12px; margin-top: -10px; margin-bottom: 15px; display: none;">Passwords do not match.</div>
                     <button type="submit" class="btn-primary" style="width:100%;">Reset Password</button>
                 </form>
+                
+                <script>
+                    function checkMatch() {
+                        const pass = document.getElementById('reset_pass').value;
+                        const confirm = document.getElementById('reset_confirm').value;
+                        const error = document.getElementById('reset_pass_error');
+                        if (pass && confirm && pass !== confirm) {
+                            error.style.display = 'block';
+                        } else {
+                            error.style.display = 'none';
+                        }
+                    }
+                </script>
             <?php endif; ?>
         </div>
     </div>

@@ -80,14 +80,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <form action="" method="POST">
                 <div class="form-group">
                     <label>Email Address</label>
-                    <input type="email" name="email" required>
+                    <input type="email" name="email" required autocomplete="email">
                 </div>
                 <div class="form-group">
                     <div style="display:flex; justify-content:space-between; align-items:center;">
                         <label>Password</label>
                         <a href="forgot_password.php" style="color:var(--gold); font-size:12px; margin-bottom:5px;">Forgot Password?</a>
                     </div>
-                    <input type="password" name="password" required>
+                    <input type="password" name="password" required autocomplete="current-password">
                 </div>
                 <button type="submit" class="btn-primary" style="width:100%;">Login to Dashboard</button>
             </form>
