@@ -350,10 +350,13 @@ try {
 <div class="mobile-admin-bar">
     <div class="nav-logo">
         <div class="nav-logo-circle" style="width:32px; height:32px; font-size:7px;">The<br>Tank</div>
-        <div class="nav-logo-text" style="font-size:16px;">Admin <span>Portal</span></div>
+        <div style="display:flex; flex-direction:column;">
+            <div class="nav-logo-text" style="font-size:12px; opacity:0.6; margin-bottom:-4px;">ADMIN</div>
+            <div class="nav-logo-text" style="font-size:16px;"><span>DASHBOARD</span></div>
+        </div>
     </div>
-    <button onclick="toggleSidebar()" style="background:none; border:none; color:white; cursor:pointer;">
-        <i data-lucide="menu"></i>
+    <button onclick="toggleSidebar()" style="background:none; border:none; color:white; cursor:pointer; padding:8px;">
+        <i data-lucide="menu" style="width:28px; height:28px;"></i>
     </button>
 </div>
 
@@ -947,6 +950,11 @@ document.getElementById('studentSearch').addEventListener('input', function(e) {
         
         // Optionally show/hide the entire section if no results, but simple row hiding is usually preferred
     });
+});
+
+// Initialize Lucide icons
+document.addEventListener('DOMContentLoaded', () => {
+    lucide.createIcons();
 });
 </script>
 

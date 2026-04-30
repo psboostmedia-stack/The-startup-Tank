@@ -88,6 +88,13 @@ nav {
     border: none;
     color: white;
     cursor: pointer;
+    padding: 8px;
+    margin-right: -8px;
+}
+
+.menu-toggle i {
+    width: 28px;
+    height: 28px;
 }
 
 .mobile-menu {
@@ -257,6 +264,14 @@ footer { background: var(--dark); padding: 80px 5% 40px; border-top: 4px solid v
 .footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 14px; transition: color 0.2s; }
 .footer-links a:hover { color: var(--gold); }
 
+.hero-features {
+    font-family: 'Bebas Neue'; font-size: 28px; letter-spacing: 2px;
+    margin-bottom: 30px; display: flex; gap: 15px; align-items: center;
+}
+.hero-features .dot { color: var(--gold); }
+.hero-features .gold { color: var(--gold); }
+.hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+
 @media (max-width: 900px) {
   .menu-toggle { display: block; }
   .hero-stats, .nav-links { display: none; }
@@ -273,4 +288,7 @@ footer { background: var(--dark); padding: 80px 5% 40px; border-top: 4px solid v
 @media (max-width: 600px) {
     .modal { padding: 30px 20px; }
     .hero-h1 { font-size: clamp(40px, 15vw, 60px); }
+    .hero-features { font-size: 20px; gap: 10px; justify-content: center; }
+    .hero-btns { justify-content: center; }
+    .hero-btns button { width: 100%; }
 }

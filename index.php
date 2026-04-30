@@ -13,15 +13,14 @@ include 'db.php';
     <script src="https://cdn.jsdelivr.net/npm/lucide/dist/umd/lucide.js"></script>
     <style>
         /* Specific page adjustments if needed */
-        .about { background: var(--off-white); color: var(--navy); padding: 100px 5%; }
-        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1200px; margin: 0 auto; }
-        .about-img img { width: 100%; border-radius: 12px; height: 400px; object-fit: cover; }
         .why { padding: 100px 5%; text-align: center; }
         .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 50px; }
         .why-card { background: rgba(255,255,255,0.03); padding: 40px; border-radius: 12px; border: 1px solid rgba(255,193,7,0.1); }
         .why-card h3 { color: var(--gold); margin-bottom: 15px; font-family: 'Barlow Condensed'; }
         .cta-bottom { padding: 120px 5%; text-align: center; background: linear-gradient(135deg, var(--navy), var(--blue)); }
         .status-banner { display: none; } /* Hidden by default, shown by PHP or JS */
+
+        .menu-toggle i { width: 28px; height: 28px; }
     </style>
 </head>
 <body>
@@ -112,10 +111,10 @@ include 'db.php';
         <div class="hero-badge">🚀 Enrollments Open Now</div>
         <h1 class="hero-h1">IDEAS TODAY.<br><span>IMPACT TOMORROW.</span></h1>
         <p class="hero-sub">Empowering school and college students to turn ideas into startups, solutions, and <strong>real-world impact.</strong> Join India’s most exciting student innovation platform.</p>
-        <div style="font-family:'Bebas Neue'; font-size:28px; letter-spacing:2px; margin-bottom:30px; display:flex; gap:15px; align-items:center;">
-            <span>PITCH</span> <span style="color:var(--gold);">·</span> <span>LEARN</span> <span style="color:var(--gold);">·</span> <span style="color:var(--gold);">GROW</span>
+        <div class="hero-features">
+            <span>PITCH</span> <span class="dot">·</span> <span>LEARN</span> <span class="dot">·</span> <span class="gold">GROW</span>
         </div>
-        <div style="display:flex; gap:16px;">
+        <div class="hero-btns">
             <button class="btn-primary" onclick="openModal('enrollModal')">🚀 Enroll Now</button>
             <button class="btn-secondary" onclick="window.location.href='#programs'">Explore Programs</button>
         </div>
