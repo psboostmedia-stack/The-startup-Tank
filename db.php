@@ -4,9 +4,9 @@
  */
 
 $host = "localhost";
-$dbname = "startup_tank_db";
-$username = "root";
-$password = "";
+$dbname = "u377836590_thestartuptank";
+$username = "u377836590_thestartupuser";
+$password = "Thestartuptank@123";
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
